@@ -1,0 +1,39 @@
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Quan ly Product";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Quan ly Product</h1>
+    <a asp-action="Create" class="btn btn-primary">Them Product</a>
+</div>
+
+<table class="table table-bordered table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Ten san pham</th>
+            <th>Danh muc</th>
+            <th>Gia</th>
+            <th>Anh</th>
+            <th class="text-end">Thao tac</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Category?.Name</td>
+                <td>@product.Price.ToString("N0") VND</td>
+                <td>
+                    <img src="@(product.ImageUrl ?? "https://placehold.co/120x80?text=Product")" alt="@product.Name" width="100" />
+                </td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-warning">Sua</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-sm btn-danger">Xoa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

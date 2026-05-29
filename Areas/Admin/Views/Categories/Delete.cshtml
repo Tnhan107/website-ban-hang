@@ -1,0 +1,17 @@
+@model Category
+
+@{
+    ViewData["Title"] = "Xoa Category";
+}
+
+<h1>Xoa Category</h1>
+
+<div class="alert alert-danger">
+    Khi xoa category <strong>@Model.Name</strong>, he thong se xoa luon @Model.Products.Count product thuoc category nay.
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Xac nhan xoa category va product</button>
+    <a asp-action="Index" class="btn btn-secondary">Huy</a>
+</form>

@@ -1,0 +1,35 @@
+@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Quan ly Category";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Quan ly Category</h1>
+    <a asp-action="Create" class="btn btn-primary">Them Category</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ten danh muc</th>
+            <th>Mo ta</th>
+            <th>So Product</th>
+            <th class="text-end">Thao tac</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+                <td>@category.Products.Count</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-sm btn-warning">Sua</a>
+                    <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-sm btn-danger">Xoa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
